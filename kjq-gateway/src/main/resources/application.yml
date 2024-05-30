@@ -1,0 +1,25 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api_route
+          uri: http://localhost:8123
+          predicates:
+            - Path=/api/**
+    # 配置sentinel
+    sentinel:
+      transport:
+        dashboard: ip:8080
+
+dubbo:
+  application:
+    name: dubbo-springboot-demo-prvider
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: nacos://ip:8848
+
+
